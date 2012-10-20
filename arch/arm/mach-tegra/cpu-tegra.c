@@ -910,11 +910,11 @@ int tegra_cpu_set_speed_cap(unsigned int *speed_cap)
 	if (is_suspended)
 		return -EBUSY;
 
-       new_speed = ASUS_governor_speed(new_speed);
+	//new_speed = ASUS_governor_speed(new_speed);
 	new_speed = tegra_throttle_governor_speed(new_speed);
 	new_speed = edp_governor_speed(new_speed);
+	new_speed = user_cap_speed(new_speed);
 
-	//new_speed = user_cap_speed(new_speed);
 	if (speed_cap)
 		*speed_cap = new_speed;
 
